@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 ---
 <div class="post">
 
@@ -11,5 +12,19 @@ layout: default
   <article class="post-content">
     {{ content }}
   </article>
+
+  <div class="twitter-link">
+	{% include twitter_link.html %}
+  </div>
+
+  {% if !site.is_dev %}
+  {% if page.comments %}
+  <div class="post-comments">
+	{% include comments.html %}
+  </div>
+  {% endif %}
+  
+  {% include google_analytics.html %}
+  {% endif %}
 
 </div>

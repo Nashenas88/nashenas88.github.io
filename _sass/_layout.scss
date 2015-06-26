@@ -105,6 +105,10 @@
 .social-media-list {
     list-style: none;
     margin-left: 0;
+	li {
+        display: inline;
+		list-style-type: none;
+	}
 }
 
 .footer-col-wrapper {
