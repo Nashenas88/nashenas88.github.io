@@ -18,7 +18,7 @@ It started off with me wanting to learn how the Rust compiler works. I came upon
 
 The general idea at the time I started was to make this code:
 
-{% highlight rust linenos=table %}
+{% highlight rust linenos %}
 struct Cat {
     x: int
 }

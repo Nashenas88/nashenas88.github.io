@@ -400,6 +400,23 @@ ul {
 	}
 }
 
+code {
+    counter-reset: linenumber;
+}
+
+.lineno {
+    visibility: hidden;
+	font-size: 9;
+
+    &::before {
+        font-size: 1rem;
+        content: "" counter(linenumber);
+        counter-increment: linenumber;
+        visibility: visible;
+		display: inline-block;
+		width: 1rem;
+    }
+}
 
 .single {
 	height:100%;
