@@ -485,8 +485,8 @@ ul {
 		}
 
 		@media (min-width: $screen-lg-min) {
-			width: 50%;
-			margin-left: 25%;
+			width: 60%;
+			margin-left: 20%;
 		}
 
 		.thumb {
@@ -617,6 +617,13 @@ ul {
 					border-radius: 0;
 					margin-bottom: 10px;
 					margin-top: 10px;
+					overflow-x: auto;
+					word-wrap: normal;
+					white-space: pre;
+
+                    code {
+					    white-space: pre;
+                    }
 
 					@media (min-width: $screen-sm-min) {
 						padding-left: 50px;
