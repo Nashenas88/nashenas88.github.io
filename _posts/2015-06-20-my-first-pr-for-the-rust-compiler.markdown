@@ -3,7 +3,7 @@ layout: post
 title:  "My first PR for the Rust compiler"
 date:   2015-06-20 19:39:57
 categories: rust compiler
-comments: false
+author: "Paul Faria"
 ---
 
 This is the first post for my new blog. I've somewhat recently started learning [Rust][rust] and contributing to the community (not just Rust, but [Servo][servo] as well). I'd like to document what went into making my first change to the compiler. It wasn't my first commit to the project, I managed to accidentally score a spot on the Rust 1.0 contributors list for fixing typos in the documentation. I've also helped out on issue [#22709][rust-22709].
