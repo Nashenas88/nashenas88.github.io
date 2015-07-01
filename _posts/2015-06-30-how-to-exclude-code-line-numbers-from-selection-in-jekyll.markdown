@@ -2,7 +2,8 @@
 layout: post
 title: "How to Exclude Code Line Numbers from Selection in Jekyll"
 date: 2015-06-30 21:42:12
-categories: "jekyll css scss"
+categories: "jekyll"
+tags: "jekyll css scss pygments"
 author: "Paul Faria"
 ---
 
@@ -57,3 +58,26 @@ code {
 
 // notice that copying and pasting from this code block does not include the line numbers
 {% endhighlight %}
+
+Another benefit is that I can take advantage of the initial counter increment. I added a new html file in my `_include` directory with the following content:
+
+{% highlight html linenos %}
+<style>
+{% raw %}#offset-{{ include.offset }} + .highlight code {
+    counter-increment: linenumber {{ include.offset }};
+}{% endraw %}
+</style>
+<div {% raw %}id="offset-{{ include.offset }}"{% endraw %}></div>
+{% endhighlight %}
+
+So now, when I add `{% raw %}{% include line_number_offset.html offset="5" %}{% endraw %}` I can produce the following:
+
+{% include line_number_offset.html offset="5" %}
+{% highlight text linenos %}
+This is some sample text.
+Note that the offset adds to the 1.
+So an offset of 5 is 1+5, which comes out to the 6
+you see on the first line
+{% endhighlight %}
+
+I just have to make sure I don't include any text or tags in between the `include` and the `highlight` liquid tags. If I do, the offset won't apply. This is caused by the `+` in the css rule. I prefer it this way so I don't accidentally offset the line numbers in more than one code block.

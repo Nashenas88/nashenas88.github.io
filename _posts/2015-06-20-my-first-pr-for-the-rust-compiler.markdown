@@ -2,7 +2,8 @@
 layout: post
 title:  "My First PR for the Rust compiler"
 date:   2015-06-20 19:39:57
-categories: "rust compiler"
+categories: "rust"
+tags: "rust compiler"
 author: "Paul Faria"
 ---
 

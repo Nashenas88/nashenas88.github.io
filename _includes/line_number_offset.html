@@ -1,0 +1,6 @@
+<style>
+#offset-{{ include.offset }} + .highlight code {
+    counter-increment: linenumber {{ include.offset }};
+}
+</style>
+<div id="offset-{{ include.offset }}"></div>
