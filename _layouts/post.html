@@ -71,10 +71,10 @@ layout: default
 
       <div class="content-panel feedback">
         I <i class="fa fa-heart"></i> feedback.<br />
-        Let me know what you think of this article on twitter <a href="http://www.twitter.com/{{ site.twitter_username }}">@{{ site.twitter_username }}</a> or leave a comment below!
+        Let me know what you think of this article on twitter <a href="http://www.twitter.com/{{ site.twitter_username }}">@{{ site.twitter_username }}</a>{% if page.hide_comments != true && site.disqus_account %} or leave a comment below{% endif %}!
       </div>
 
-      {% if !page.hide_comments && site.disqus_account %}
+      {% if page.hide_comments != true && site.disqus_account %}
       <div class="content-panel comments">
         <div id="disqus_thread">
           <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
@@ -120,12 +120,15 @@ layout: default
   </div>
 
 </div>
-
-{% if !page.hide_comments && site.disqus_account %}
+{% if page.hide_comments != true && site.disqus_account %}
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 function disqus_config() { this.experiment.enable_scroll_container = true; }
-var disqus_shortname = "{{ site.disqus_account }}"; // required: replace example with your forum shortname
+var disqus_shortname = "{{ site.disqus_account }}";
+var disqus_identifier = "{{ page.id }}";
+var disqus_title = "{{ page.title }}";
+var disqus_url = "{{ site.url }}{{ page.url }}";
+
 /* * * DON'T EDIT BELOW THIS LINE * * */
 (function() {
   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

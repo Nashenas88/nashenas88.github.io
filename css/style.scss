@@ -99,12 +99,6 @@ ul {
 	margin-top: 20px;
 	margin-left: -0%;
 	width: 100%;
-
-	@media (min-width: $screen-sm-min) {
-		font-size: 62px;
-		margin-left: -10%;
-		width: 120%;
-	}
 }
 
 .menu-button {
