@@ -7,6 +7,8 @@ tags: "rust compiler"
 author: "Paul Faria"
 ---
 
+**This is a work in progress. It is not yet complete.**
+
 This is the first post for my new blog. I've somewhat recently started learning [Rust][rust] and contributing to the community (not just Rust, but [Servo][servo] as well). I'd like to document what went into making my first change to the compiler. It wasn't my first commit to the project, I managed to accidentally score a spot on the Rust 1.0 contributors list for fixing typos in the documentation. I've also helped out on issue [#22709][rust-22709].
 
 [rust]:       http://www.rust-lang.org/
