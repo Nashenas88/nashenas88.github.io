@@ -6,6 +6,7 @@ description: >
   share my thoughts on technology, space, etc. I work as a software
   engineer, and I have a huge passion for coding and robotics.
 baseurl: ""
+include: [_wips]
 url: "https://nashenas88.github.io"
 title_description: "Title description"
 title_image: "https://pbs.twimg.com/profile_images/612406747685191681/6PRxbC2J_400x400.jpg"
