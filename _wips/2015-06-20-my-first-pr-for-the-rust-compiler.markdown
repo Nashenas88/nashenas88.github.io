@@ -65,6 +65,7 @@ I also wanted to make the note ```use `(s.x)(...)` if you meant to call the func
 
 The code I needed to change was the below section of the `report_error` function from the file `src/librustc_typeck/check/method/suggest.rs`.
 
+{% include hide_last_line_number.html %}
 {% include line_number_offset.html offset=31 %}
 {% highlight rust linenos %}
  pub fn report_error<'a, 'tcx>(fcx: &FnCtxt<'a, 'tcx>,
@@ -108,18 +109,56 @@ The code I needed to change was the below section of the `report_error` function
 ...
 {% endhighlight %}
 
-Let's break this down a little. We're in the `suggest.rs` file under the parent directory of `method`. The `report_error` function is used to output suggestions when the compiler comes across some kind of error related to methods. On line 40, we check if the receiver type is an error (this means there was an issue parsing the `abc` in `abc.xyz` or the `(a.x())` in `(a.x()).bar()`. There's no additional suggestions that can be made here since we can't lookup the type to give better hints.
+Let's break this down a little. We're in the `suggest.rs` file under the parent directory of `method`. The `report_error` function is used to output suggestions when the compiler comes across some kind of error related to methods. On this line:
+
+{% include line_number_offset.html offset=39 %}
+{% highlight rust linenos %}
+if ty::type_is_error(rcvr_ty) {
+    return
+}
+{% endhighlight %}
+
+we check if the receiver type is an error (this means there was an issue parsing the `abc` in `abc.xyz` or the `(a.x())` in `(a.x()).bar()`. There's no additional suggestions that can be made here since we can't lookup the type to give better hints.
 
 Moving on, we're going to match on the error enum, which is of type `MethodError`. For this issue, we're only interested in the `NoMatch` enumeration. We also don't care about the values that are pattern matched out (`static_sources`, `out_of_scope_traits`, and `mode`), since they're used for other purposes besides our issue at hand.
 
-At line 48, we're going to use the function context to output an error. There are some issues with multilingual translations with this line, but I'll get to that in another post.
+In the following code:
+{% include line_number_offset.html offset=47 %}
+{% highlight rust linenos %}
+fcx.type_error_message(
+    span,
+    |actual| {
+        format!("no {} named `{}` found for type `{}` \
+                 in the current scope",
+                if mode == Mode::MethodCall { "method" }
+                else { "associated item" },
+                item_name,
+                actual)
+    },
+    rcvr_ty,
+    None);
+{% endhighlight %}
+we're going to use the function context to output an error. There are some issues with multilingual translations with this chunk of code, but I'll get to that in another post.
 
-The `if` expression on line 62 is where the meat of our issue lies. This is where we're going to decide what suggestions to display after the error. We're pattern matching the id of the receiver type's struct, and the existance of the receiver expression.
+The `if` expression here:
+{% include line_number_offset.html offset=61 %}
+{% highlight rust linenos %}
+if let (&ty::TyStruct(did, _), Some(_)) = (&rcvr_ty.sty, rcvr_expr) {
+    let fields = ty::lookup_struct_fields(cx, did);
+    if fields.iter().any(|f| f.name == item_name) {
+        cx.sess.span_note(span,
+            &format!("use `(s.{0})(...)` if you meant to call the \
+                     function stored in the `{0}` field", item_name));
+    }
+}
+{% endhighlight %}
+is where the meat of our issue lies. This is where we're going to decide what suggestions to display after the error. We're pattern matching the id of the receiver type's struct, and the existance of the receiver expression.
 
 The `ty::lookup_struct_fields` call on line 63 is using the current context, along with the struct definition id to lookup all of the fields that belong to the struct with that definition id. Then, we're going to iterate over all of the fields and see if their name matches the name of the method we attempted to call. If the compiler was on a line like `(a.x()).y()`, and `y` is what didn't match, then `did` would be the definition id of the struct that's returned from the call to `a.x()`, `recvr_expr` would be `Some` expression `(a.x())`, and `item_name` would be the string `"y"`. If one such field is found, then a very generic suggestion is output as a note. It assumes that the user intended to call a function, without verifying if the field is a function type at all. My fix for the issue (along with lots of help from eddyb on [irc](irc) (#rust)) is below (the difference in line numbers is due to `use` statements, which I didn't feel the need to include).
 
 [irc]: https://wiki.mozilla.org/IRC
 
+{% include hide_last_line_number.html %}
 {% include line_number_offset.html offset=34 %}
 {% highlight rust linenos %}
 pub fn report_error<'a, 'tcx>(fcx: &FnCtxt<'a, 'tcx>,
