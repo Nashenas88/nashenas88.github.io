@@ -48,7 +48,6 @@ body {
 	font-size: 16px;
 	height: 100%;
 	width: 100%;
-	overflow-x: hidden;
 }
 
 a, a:active {
@@ -139,7 +138,6 @@ html.mm-opened {
 	margin-top: 20px;
 	box-shadow: 0px 0px 0px 0px, 0px 6px 12px rgba(0, 0, 0, 0.2);
 	border-bottom: 5px solid $light-accent;
-	overflow-x: hidden;
 }
 
 #my-menu {
@@ -441,11 +439,6 @@ code {
     visibility: hidden;
 }
 
-.page-content {
-    // always show above the menu
-    z-index: 2;
-}
-
 .single {
 	height:100%;
 	max-height: 100%;
@@ -636,6 +629,10 @@ code {
 			    margin: 5px auto 5px auto;
 			}
 
+            .highlighttable .code {
+			    max-width: 75vw;
+			}
+
 			.highlight {
 				width: 100%;
 				margin-left: -15px;
@@ -648,7 +645,7 @@ code {
 				}
 
 				@media (max-width: $screen-sm-min) {
-					margin-left: 0px;
+				    padding-right: 30px;
 				}
 
 				pre {
