@@ -1,13 +1,11 @@
 ---
 layout: post
 title:  "My First PR for the Rust compiler"
-date:   2015-06-20 19:39:57
+date:   2015-07-28 19:39:57
 categories: "rust"
 tags: "rust compiler"
 author: "Paul Faria"
 ---
-
-**This is a work in progress. It is not yet complete.**
 
 This is the first post for my new blog. I've somewhat recently started learning [Rust][rust] and contributing to the community (not just Rust, but [Servo][servo] as well). I'd like to document what went into making my first change to the compiler. It wasn't my first commit to the project, I managed to accidentally score a spot on the Rust 1.0 contributors list for fixing typos in the documentation. I've also helped out on issue [#22709][rust-22709].
 
@@ -121,7 +119,9 @@ if ty::type_is_error(rcvr_ty) {
 
 We check if the receiver type is an error (this means there was an issue parsing the `abc` in `abc.xyz()` or the `(a.x())` in `(a.x()).bar()`. There's no additional suggestions that can be made here since we can't lookup the type to give better hints.
 
-Moving on, we're going to match on the error enum, which is of type `MethodError`. For this issue, we're only interested in the `NoMatch` enumeration. We also don't care about the values that are pattern matched out (`static_sources`, `out_of_scope_traits`, and `mode`), since they're used for other purposes besides our issue at hand.
+Moving on, we're going to match on the error enum, which is of type [`MethodError`](method_error). For this issue, we're only interested in the `NoMatch` enumeration. We also don't care about the values that are pattern matched out (`static_sources`, `out_of_scope_traits`, and `mode`), since they're used for other purposes besides our issue at hand.
+
+[method_error]: https://github.com/rust-lang/rust/blob/a5c12f4e39d32af3c951b66bd2839bc0b5a1125b/src/librustc_typeck/check/method/mod.rs#L35-L44
 
 {% include line_number_offset.html offset=47 %}
 {% highlight rust linenos %}
@@ -313,7 +313,7 @@ Here we're looking up the field type. This will be used later on. It represents 
 {% highlight rust linenos %}
 if let Ok(fn_once_trait_did) = cx.lang_items.require(FnOnceTraitLangItem) {
 {% endhighlight %}
-Here we try and require the Rust provided `FnOnce` trait language item. We're going to try and use this to determine if the field implements the `FnOnce` trait. If we're able to obtain the trait definition id, when we can move forward with the more solid approach (this should occur most of the time).
+Here we try and require the Rust provided `FnOnce` trait language item. We're going to try and use this to determine if the field implements the `FnOnce` trait. If we're able to obtain the trait definition id, then we can move forward with the more solid approach (this should occur most of the time).
 
 {% include line_number_offset.html offset=90 %}
 {% highlight rust linenos %}
@@ -417,3 +417,7 @@ error: aborting due to 2 previous errors
 {% endhighlight %}
 
 You can play with this example [here](http://is.gd/EnHRWF).
+
+**Note**: After I started writing this post, but before it was published, I was mentioned in issue [#26472](26472). After reviewing that issue, I realized there's a bug in my code, in that it will recommend private fields to a user. The fix for that is more complicated than you would think (I'd have to take the private scope into account, and currently, that's in another module in the compiler, in a completely separate pass).
+
+[26472]: https://github.com/rust-lang/rust/issues/26472
