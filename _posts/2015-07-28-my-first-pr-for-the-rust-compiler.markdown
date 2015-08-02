@@ -418,6 +418,6 @@ error: aborting due to 2 previous errors
 
 You can play with this example [here](http://is.gd/EnHRWF).
 
-**Note**: After I started writing this post, but before it was published, I was mentioned in issue [#26472](26472). After reviewing that issue, I realized there's a bug in my code, in that it will recommend private fields to a user. The fix for that is more complicated than you would think (I'd have to take the private scope into account, and currently, that's in another module in the compiler, in a completely separate pass).
+**Note**: After I started writing this post, but before it was published, I was mentioned in issue [#26472][26472]. After reviewing that issue, I realized there's a bug in my code, in that it will recommend private fields to a user. The fix for that is more complicated than you would think (I'd have to take the private scope into account, and currently, that's in another module in the compiler, in a completely separate pass).
 
 [26472]: https://github.com/rust-lang/rust/issues/26472
