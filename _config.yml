@@ -8,7 +8,7 @@ description: >
 baseurl: ""
 url: "https://nashenas88.github.io"
 title_description: "Title description"
-title_image: "https://pbs.twimg.com/profile_images/612406747685191681/6PRxbC2J_400x400.jpg"
+title_image: "/assets/me.jpg"
 google_analytics: "UA-64460630-1"
 disqus_account: nashenas88
 post_limit: 5
