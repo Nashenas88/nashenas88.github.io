@@ -22,5 +22,5 @@ stackoverflow_id_name: 1483396/nashenas
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 permalink: '/posts/:title'
