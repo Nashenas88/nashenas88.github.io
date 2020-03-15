@@ -411,30 +411,6 @@ html.mm-opened {
 	}
 }
 
-code {
-    counter-reset: linenumber;
-}
-
-.lineno {
-    visibility: hidden;
-	font-size: 0;
-
-    &::before {
-        font-size: 1rem;
-        content: "" counter(linenumber);
-        counter-increment: linenumber;
-        visibility: visible;
-		display: inline-block;
-		width: 1rem;
-		-webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-}
-
 .hide-lineno::before {
     visibility: hidden;
 }

@@ -7,6 +7,11 @@ tags: "jekyll css scss pygments"
 author: "Paul Faria"
 ---
 
+---
+**Note**: This trick no longer works due to how line numbers are currently generated.
+
+---
+
 I ran into an issue when trying to use the `linenos` option for highlighting code with Jekyll and pygments. I didn't like that the default version allowed you to select the line numbers when copying and pasting. The table version also has many issues (see [this post](http://thanpol.as/jekyll/jekyll-code-highlight-and-line-numbers-problem-solved/)). I didn't like the idea of having to write javascript to get around this. The problem seemed to me like it could be solved in a much simpler fashion. My solution was to add the following scss to my site:
 
 {% highlight scss linenos %}
@@ -72,7 +77,6 @@ Another benefit is that I can take advantage of the initial counter increment. I
 
 So now, when I add `{% raw %}{% include line_number_offset.html offset="5" %}{% endraw %}` I can produce the following:
 
-{% include line_number_offset.html offset="5" %}
 {% highlight text linenos %}
 This is some sample text.
 Note that the offset adds to the 1.
