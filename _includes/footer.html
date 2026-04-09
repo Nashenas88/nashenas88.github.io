@@ -12,27 +12,15 @@
 <script src="{{ site.baseurl }}/js/jquery.mmenu.min.all.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
-      var savedScroll = 0;
       $("#my-menu").mmenu().on("closed.mm", function() {
-         document.body.style.position = "";
-         document.body.style.top = "";
-         document.body.style.left = "";
-         document.body.style.right = "";
-         document.body.style.height = "";
-         document.body.style.overflow = "";
-         window.scrollTo(0, savedScroll);
          $(".menu-button").show();
       });
       $(".menu-button").click(function() {
-         savedScroll = window.pageYOffset || document.documentElement.scrollTop;
-         document.body.style.position = "fixed";
-         document.body.style.top = -savedScroll + "px";
-         document.body.style.left = "0";
-         document.body.style.right = "0";
-         document.body.style.height = "auto";
-         document.body.style.overflow = "visible";
+         var savedScroll = window.pageYOffset || document.documentElement.scrollTop;
          $(".menu-button").hide();
          $("#my-menu").trigger("open.mm");
+         window.scrollTo(0, savedScroll);
+         setTimeout(function() { window.scrollTo(0, savedScroll); }, 30);
       });
    });
 </script>
