@@ -19,7 +19,7 @@ layout: default
       </div>
       {% elsif page.thumbnail %}
       <div class="thumb">
-        <i class="fa fa-{{ page.thumbnail }} fa-4x"></i>
+        <i class="fa-solid fa-{{ page.thumbnail }} fa-4x"></i>
       </div>
       {% endif %}
 
@@ -57,14 +57,14 @@ layout: default
         {% endif %}
 
         <div class="tags"><small>
-          <i class="fa fa-tags"></i>
+          <i class="fa-solid fa-tags"></i>
             {{ page.tags | join: ', ' }}
         </small></div>
 
       </div>
 
 {% if page.hide_comments != true and site.disqus_account %}      <div class="content-panel feedback">
-        I <i class="fa fa-heart"></i> feedback.<br />
+        I <i class="fa-solid fa-heart"></i> feedback.<br />
         Leave a comment below!
       </div>
 
