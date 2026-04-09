@@ -6,9 +6,7 @@
 @import "solarized-dark";
 
 /* Colours */
-$twitter:        #6dabda;
 $linkedin:       #2b77b1;
-$google-plus:    #c95644;
 $github:         #f6c2a4;
 $stack-overflow: #c98b3b;
 $rss:            #eea33a;
@@ -188,16 +186,8 @@ html.mm-opened {
 		transition: 0.3s;
 	}
 
-	.fa-twitter:hover {
-		color: $twitter;
-	}
-
 	.fa-linkedin:hover {
 		color: $linkedin;
-	}
-
-	.fa-google-plus:hover {
-		color: $google-plus;
 	}
 
 	.fa-github-alt:hover {

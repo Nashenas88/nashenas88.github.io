@@ -8,9 +8,7 @@
       <li><a href="/search/"><i class="fa fa-search fa-fw"></i> Search</a></li>
     </ul>
     <p class="links">
-      {% if site.twitter_username %}<a href="http://www.twitter.com/{{ site.twitter_username }}" target="_new"><i class="fa fa-twitter"></i></a>{% endif %}
       {% if site.linkedin_id %}<a href="https://www.linkedin.com/in/{{ site.linkedin_id }}" target="_new"><i class="fa fa-linkedin"></i></a>{% endif %}
-      {% if site.google_plus_username %}<a href="https://plus.google.com/+{{ site.google_plus_username }}" target="_new"><i class="fa fa-google-plus"></i></a>{% endif %}
       {% if site.github_username %}<a href="https://github.com/{{ site.github_username }}" target="_new"><i class="fa fa-github-alt"></i></a>{% endif %}
       {% if site.stackoverflow_id_name %}<a href="http://stackoverflow.com/users/{{ site.stackoverflow_id_name }}" target="_new"><i class="fa fa-stack-overflow"></i></a>{% endif %}
       <a href="{{ "/feed.xml" | prepend: site.baseurl }}" target="_new"><i class="fa fa-rss"></i></a>
