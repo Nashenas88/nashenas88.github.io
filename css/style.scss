@@ -7,6 +7,7 @@
 
 /* Colours */
 $bluesky:        #1185fe;
+$mastodon:       #6364ff;
 $linkedin:       #2b77b1;
 $github:         #f6c2a4;
 $stack-overflow: #c98b3b;
@@ -189,6 +190,10 @@ html.mm-opened {
 
 	.fa-bluesky:hover {
 		color: $bluesky;
+	}
+
+	.fa-mastodon:hover {
+		color: $mastodon;
 	}
 
 	.fa-linkedin:hover {
