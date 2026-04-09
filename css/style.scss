@@ -6,6 +6,7 @@
 @import "solarized-dark";
 
 /* Colours */
+$bluesky:        #1185fe;
 $linkedin:       #2b77b1;
 $github:         #f6c2a4;
 $stack-overflow: #c98b3b;
@@ -184,6 +185,10 @@ html.mm-opened {
 		-webkit-transition: 0.3s;
 		-moz-transition: 0.3s;
 		transition: 0.3s;
+	}
+
+	.fa-bluesky:hover {
+		color: $bluesky;
 	}
 
 	.fa-linkedin:hover {
