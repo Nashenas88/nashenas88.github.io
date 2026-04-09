@@ -9,7 +9,6 @@ baseurl: ""
 url: "https://nashenas88.github.io"
 title_description: "Title description"
 title_image: "/assets/me.jpg"
-disqus_account: nashenas88
 post_limit: 5
 
 # Social media accounts
